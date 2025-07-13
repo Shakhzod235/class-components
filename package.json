@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "format:fix": "prettier --write .",
     "tailwind:init": "tailwindcss init -p",
-    "prepare": "husky"
+    "prepare": "husky install"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
