@@ -20,7 +20,7 @@ export class CardList extends Component<unknown, State> {
     isLoading: true,
   };
 
-  async componentDidMount(): Promise<void> {
+  componentDidMount(): void {
     try {
       setTimeout(async () => {
         const response = await fetch(API_URL);
@@ -28,7 +28,6 @@ export class CardList extends Component<unknown, State> {
           throw new Error(`Response status: ${response.status}`);
 
         const data = await response.json();
-        console.log(data);
         this.setState({
           cards: data.results,
           isLoading: false,
