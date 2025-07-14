@@ -2,8 +2,24 @@ import { Component } from 'react';
 import { Card } from './Card';
 import type { CardsProps } from '../types/global';
 
-export class CardList extends Component<CardsProps> {
+interface State {
+  shouldThrow: boolean;
+}
+
+export class CardList extends Component<CardsProps, State> {
+  state: State = {
+    shouldThrow: false,
+  };
+
+  handleThrow = () => {
+    this.setState({ shouldThrow: true });
+  };
+
   render() {
+    if (this.state.shouldThrow) {
+      throw new Error('Ошибка при загрузке данных');
+    }
+
     return (
       <div className="flex justify-center flex-col items-center w-125">
         <div className="w-full h-[530px] flex items-center flex-col justify-start">
@@ -48,7 +64,7 @@ export class CardList extends Component<CardsProps> {
         </div>
         <button
           className="self-end mt-4 pt-2 pb-2 pl-4 pr-4 border-1 border-neutral-900 rounded-md cursor-pointer hover:bg-neutral-200 text-lg"
-          onClick={this.props.throwError}
+          onClick={this.handleThrow}
         >
           Throw Error
         </button>

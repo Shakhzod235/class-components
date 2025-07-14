@@ -52,11 +52,11 @@ export class App extends Component<unknown, CardListState> {
   }
 
   throwError = () => {
-    console.error('Ошибка при загрузке данных');
     this.setState({
       cards: [],
       loadError: true,
     });
+    throw new Error('Ошибка при загрузке данных');
   };
   searchCharacters = async (e: React.FormEvent<HTMLFormElement>) => {
     localStorage.removeItem('name');
