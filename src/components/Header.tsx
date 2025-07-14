@@ -4,7 +4,7 @@ import { Search } from './Search';
 export class Header extends Component {
   render() {
     return (
-      <header className="mt-30">
+      <header className="mt-20">
         <div className="container">
           <Search />
         </div>

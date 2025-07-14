@@ -4,7 +4,7 @@ import { CardList } from './CardList';
 export class Main extends Component {
   render() {
     return (
-      <main className="mt-10">
+      <main className="mt-10 mb-10">
         <div className="container flex justify-center items-center">
           <CardList />
         </div>
