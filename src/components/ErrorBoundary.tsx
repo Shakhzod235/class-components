@@ -27,7 +27,7 @@ export class ErrorBoundary extends Component<{ children: ReactNode }, State> {
           <p className="text-xl text-red-600">Что-то пошло не так.</p>
           <button
             onClick={this.handleReset}
-            className="mt-4 border px-4 py-2 rounded hover:bg-gray-200"
+            className="mt-4 border-1 border-neutral-900 px-4 py-2 rounded hover:bg-neutral-200 cursor-pointer"
           >
             Сбросить
           </button>
