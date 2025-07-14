@@ -1,69 +1,19 @@
 import { Component } from 'react';
 import { Card } from './Card';
+import type { Props } from '../types/global';
 
-interface CardInfo {
-  id: number;
-  name: string;
-  species: string;
-}
-
-interface State {
-  cards: CardInfo[];
-  isLoading: boolean;
-  loadError: boolean;
-}
-
-const API_URL = 'https://rickandmortyapi.com/api/character';
-
-export class CardList extends Component<unknown, State> {
-  state: State = {
-    cards: [],
-    isLoading: true,
-    loadError: false,
-  };
-
-  componentDidMount(): void {
-    try {
-      setTimeout(async () => {
-        const response = await fetch(API_URL);
-        if (!response.ok)
-          throw new Error(`Response status: ${response.status}`);
-
-        const data = await response.json();
-        this.setState({
-          cards: data.results,
-          isLoading: false,
-        });
-      }, 1000);
-    } catch (error: unknown) {
-      if (error instanceof Error)
-        console.error(`Ошибка загрузки: ${error.message}`);
-      this.setState({
-        isLoading: false,
-        loadError: true,
-      });
-    }
-  }
-
-  throwError = () => {
-    console.error('Ошибка при загрузке данных');
-    this.setState({
-      cards: [],
-      loadError: true,
-    });
-  };
-
+export class CardList extends Component<Props> {
   render() {
     return (
       <div className="flex justify-center flex-col items-center w-100">
         <div className="w-full h-[530px] flex items-center flex-col justify-center">
-          {this.state.cards.length !== 0 && (
+          {this.props.cards.length !== 0 && (
             <div className="flex justify-between w-full mb-6">
               <h3>Character Name</h3>
               <h3>Character Species</h3>
             </div>
           )}
-          {this.state.isLoading ? (
+          {this.props.isLoading ? (
             <h2 className="flex items-center justify-center text-2xl">
               <svg
                 className="mr-3 size-5 animate-spin text-black"
@@ -88,17 +38,17 @@ export class CardList extends Component<unknown, State> {
               Loading...
             </h2>
           ) : (
-            this.state.cards.map((card) => (
+            this.props.cards.map((card) => (
               <Card key={card.id} name={card.name} description={card.species} />
             ))
           )}
-          {this.state.loadError && (
+          {this.props.loadError && (
             <h2 className="text-2xl">Ошибка при загрузке данных</h2>
           )}
         </div>
         <button
           className="self-end mt-4 pt-2 pb-2 pl-4 pr-4 border-1 border-neutral-900 rounded-md cursor-pointer hover:bg-neutral-200 text-lg"
-          onClick={this.throwError}
+          onClick={this.props.throwError}
         >
           Throw Error
         </button>
