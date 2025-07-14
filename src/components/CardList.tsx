@@ -13,7 +13,7 @@ interface State {
 
 const API_URL = 'https://rickandmortyapi.com/api/character';
 
-export class CardList extends Component<{}, State> {
+export class CardList extends Component<unknown, State> {
   state: State = {
     cards: [],
   };
