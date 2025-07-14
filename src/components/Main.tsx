@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { CardList } from './CardList';
-import type { Props } from '../types/global';
+import type { CardsProps } from '../types/global';
 
-export class Main extends Component<Props> {
+export class Main extends Component<CardsProps> {
   render() {
     return (
       <main className="mt-10 mb-10">

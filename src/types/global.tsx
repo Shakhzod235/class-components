@@ -4,7 +4,7 @@ export interface CardInfo {
   species: string;
 }
 
-export interface Props {
+export interface CardsProps {
   cards: CardInfo[];
   isLoading: boolean;
   loadError: boolean;
@@ -15,4 +15,9 @@ export interface CardListState {
   cards: CardInfo[];
   isLoading: boolean;
   loadError: boolean;
+}
+
+export interface SearchProps {
+  inputRef: React.RefObject<HTMLInputElement | null>;
+  searchCharacters: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
 }
