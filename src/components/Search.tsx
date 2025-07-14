@@ -9,7 +9,7 @@ export class Search extends Component {
           name="search field"
           className="border-neutral-900 border-1 rounded-md pl-4 pr-4 pt-1.5 pb-1.5"
         />
-        <button className="border-neutral-900 border-1 rounded-md pl-4 pr-4 pt-1 pb-1 text-neutral-950 text-xl">
+        <button className="border-neutral-900 border-1 rounded-md pl-4 pr-4 pt-1 pb-1 text-neutral-950 text-xl hover:bg-neutral-200 cursor-pointer">
           Search
         </button>
       </div>
