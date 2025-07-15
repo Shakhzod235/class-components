@@ -18,6 +18,12 @@ export class App extends Component<unknown, CardListState> {
     errorMessage: '',
   };
 
+  componentDidMount(): void {
+    const savedQuery = localStorage.getItem('name');
+    const queryURL = this.buildQueryURL(savedQuery);
+    this.getCardsList(queryURL);
+  }
+
   getCardsList = async (url: string) => {
     try {
       await new Promise((res) => setTimeout(res, 2000));
@@ -57,12 +63,6 @@ export class App extends Component<unknown, CardListState> {
     return `${API_URL}/?${params.toString()}`;
   };
 
-  componentDidMount(): void {
-    const savedQuery = localStorage.getItem('name');
-    const queryURL = this.buildQueryURL(savedQuery);
-    this.getCardsList(queryURL);
-  }
-
   throwError = () => {
     this.setState({
       cards: [],
@@ -83,6 +83,7 @@ export class App extends Component<unknown, CardListState> {
     const queryURL = this.buildQueryURL(query);
     this.getCardsList(queryURL);
   };
+
   setLoading = () => {
     this.setState({
       isLoading: true,
