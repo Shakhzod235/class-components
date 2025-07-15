@@ -1,7 +1,13 @@
 export interface CardInfo {
+  image: string;
   id: number;
   name: string;
   species: string;
+}
+
+export interface CardProps {
+  name: string;
+  description: string;
 }
 
 export interface CardsProps {
@@ -17,6 +23,7 @@ export interface CardListState {
   loadError: boolean;
   shouldThrow: boolean;
   errorMessage: string;
+  charactersNum: number;
 }
 
 export interface SearchProps {

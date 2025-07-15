@@ -5,14 +5,10 @@ import type { CardsProps } from '../types/global';
 export class CardList extends Component<CardsProps> {
   render() {
     return (
-      <div className="flex justify-center flex-col items-center w-125">
-        <div className="w-full h-[530px] flex items-center flex-col justify-start">
-          <div className="flex justify-between w-full mb-6">
-            <h3>Character Name</h3>
-            <h3>Character Species</h3>
-          </div>
+      <div className="flex justify-center flex-col items-center w-[1200px]">
+        <div className="w-full h-[860px] grid grid-cols-3 gap-6">
           {this.props.isLoading ? (
-            <h2 className="flex items-center justify-center text-2xl">
+            <h2 className="flex items-start col-start-2 justify-center text-2xl">
               <svg
                 className="mr-3 size-5 animate-spin text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +33,7 @@ export class CardList extends Component<CardsProps> {
             </h2>
           ) : (
             this.props.cards.map((card) => (
-              <Card key={card.id} name={card.name} description={card.species} />
+              <Card key={card.id} name={card.name} description={card.image} />
             ))
           )}
         </div>

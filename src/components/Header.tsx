@@ -5,7 +5,7 @@ import type { SearchProps } from '../types/global';
 export class Header extends Component<SearchProps> {
   render() {
     return (
-      <header className="mt-20">
+      <header className="mt-10">
         <div className="container">
           <Search
             inputRef={this.props.inputRef}

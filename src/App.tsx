@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import './App.css';
 import { Header } from './components/Header';
 import { Main } from './components/Main';
 import type { CardListState } from './types/global';
@@ -16,6 +15,7 @@ export class App extends Component<unknown, CardListState> {
     loadError: false,
     shouldThrow: false,
     errorMessage: '',
+    charactersNum: 0,
   };
 
   componentDidMount(): void {
@@ -45,6 +45,7 @@ export class App extends Component<unknown, CardListState> {
         cards: data.results,
         isLoading: false,
         loadError: false,
+        charactersNum: 5,
       });
     } catch {
       this.setState({
@@ -67,6 +68,7 @@ export class App extends Component<unknown, CardListState> {
     this.setState({
       cards: [],
       loadError: true,
+      errorMessage: 'Выкинута ошибка',
     });
     this.setState({ shouldThrow: true });
   };
