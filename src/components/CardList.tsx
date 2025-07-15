@@ -11,7 +11,7 @@ export class CardList extends Component<CardsProps> {
             <h3>Character Name</h3>
             <h3>Character Species</h3>
           </div>
-          {this.props.isLoading && (
+          {this.props.isLoading ? (
             <h2 className="flex items-center justify-center text-2xl">
               <svg
                 className="mr-3 size-5 animate-spin text-black"
@@ -35,11 +35,6 @@ export class CardList extends Component<CardsProps> {
               </svg>
               Loading...
             </h2>
-          )}
-          {this.props.loadError ? (
-            <h2 className="text-2xl">Ошибка при загрузке данных</h2>
-          ) : this.props.cards.length === 0 && !this.props.isLoading ? (
-            <h2 className="text-2xl">Ничего не найдено</h2>
           ) : (
             this.props.cards.map((card) => (
               <Card key={card.id} name={card.name} description={card.species} />
