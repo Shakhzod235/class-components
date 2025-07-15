@@ -49,14 +49,17 @@ export class App extends Component<unknown, CardListState> {
     }
   };
 
+  buildQueryURL = (name: string | null): string => {
+    const params = new URLSearchParams();
+    if (name && name.trim() !== '') {
+      params.append('name', name.trim());
+    }
+    return `${API_URL}/?${params.toString()}`;
+  };
+
   componentDidMount(): void {
     const savedQuery = localStorage.getItem('name');
-    const params = new URLSearchParams();
-    if (savedQuery) {
-      params.append('name', savedQuery);
-    }
-    const queryURL = `${API_URL}/?${params.toString()}`;
-
+    const queryURL = this.buildQueryURL(savedQuery);
     this.getCardsList(queryURL);
   }
 
@@ -77,13 +80,7 @@ export class App extends Component<unknown, CardListState> {
     this.setState({
       cards: [],
     });
-    const params = new URLSearchParams();
-
-    if (query !== '') {
-      params.append('name', query);
-    }
-
-    const queryURL = `${API_URL}/?${params.toString()}`;
+    const queryURL = this.buildQueryURL(query);
     this.getCardsList(queryURL);
   };
 
