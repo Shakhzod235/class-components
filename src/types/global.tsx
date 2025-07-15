@@ -15,6 +15,8 @@ export interface CardListState {
   cards: CardInfo[];
   isLoading: boolean;
   loadError: boolean;
+  shouldThrow: boolean;
+  errorMessage: string;
 }
 
 export interface SearchProps {

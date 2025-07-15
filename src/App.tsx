@@ -14,6 +14,8 @@ export class App extends Component<unknown, CardListState> {
     cards: [],
     isLoading: true,
     loadError: false,
+    shouldThrow: false,
+    errorMessage: '',
   };
 
   getCardsList = async (url: string) => {
@@ -21,21 +23,28 @@ export class App extends Component<unknown, CardListState> {
       await new Promise((res) => setTimeout(res, 2000));
       const response = await fetch(url);
 
-      if (!response.ok) throw new Error(`Response status: ${response.status}`);
-
+      if (response.status === 404) {
+        this.setState({
+          isLoading: false,
+          shouldThrow: true,
+          errorMessage: 'Персонажи не найдены',
+        });
+        return;
+      }
+      if (!response.ok) {
+        throw new Error(`Ошибка: ${response.status}`);
+      }
       const data = await response.json();
       this.setState({
         cards: data.results,
         isLoading: false,
+        loadError: false,
       });
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error(`Ошибка загрузки: ${error.message}`);
-      }
-
+    } catch {
       this.setState({
         isLoading: false,
         loadError: true,
+        shouldThrow: true,
       });
     }
   };
@@ -56,8 +65,9 @@ export class App extends Component<unknown, CardListState> {
       cards: [],
       loadError: true,
     });
-    throw new Error('Ошибка при загрузке данных');
+    this.setState({ shouldThrow: true });
   };
+
   searchCharacters = async (e: React.FormEvent<HTMLFormElement>) => {
     localStorage.removeItem('name');
     e.preventDefault();
@@ -78,6 +88,9 @@ export class App extends Component<unknown, CardListState> {
   };
 
   render() {
+    if (this.state.shouldThrow) {
+      throw new Error(`${this.state.errorMessage}`);
+    }
     return (
       <>
         <Header inputRef={inputRef} searchCharacters={this.searchCharacters} />
