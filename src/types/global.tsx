@@ -22,4 +22,5 @@ export interface CardListState {
 export interface SearchProps {
   inputRef: React.RefObject<HTMLInputElement | null>;
   searchCharacters: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+  setLoading: () => void;
 }

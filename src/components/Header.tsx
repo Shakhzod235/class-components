@@ -10,6 +10,7 @@ export class Header extends Component<SearchProps> {
           <Search
             inputRef={this.props.inputRef}
             searchCharacters={this.props.searchCharacters}
+            setLoading={this.props.setLoading}
           />
         </div>
       </header>

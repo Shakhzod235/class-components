@@ -83,6 +83,11 @@ export class App extends Component<unknown, CardListState> {
     const queryURL = this.buildQueryURL(query);
     this.getCardsList(queryURL);
   };
+  setLoading = () => {
+    this.setState({
+      isLoading: true,
+    });
+  };
 
   render() {
     if (this.state.shouldThrow) {
@@ -90,7 +95,11 @@ export class App extends Component<unknown, CardListState> {
     }
     return (
       <>
-        <Header inputRef={inputRef} searchCharacters={this.searchCharacters} />
+        <Header
+          inputRef={inputRef}
+          searchCharacters={this.searchCharacters}
+          setLoading={this.setLoading}
+        />
         <Main
           cards={this.state.cards}
           isLoading={this.state.isLoading}
